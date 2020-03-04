@@ -1,0 +1,87 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{   
+    public static void sort(long[] ar, int l, int h){
+        if(l < h){
+            int m = (l+h)/2;
+            sort(ar, l, m);
+            sort(ar, m + 1, h);
+            merge(ar, l, m, h);
+        }
+    }
+    
+    private static void merge(long[] ar, int l, int m, int h){
+        int nA = m - l + 1;
+        int nB = h - m;
+        long[] A = new long[nA];
+        long[] B = new long[nB];
+        for(int i = 0; i < nA; i++){
+            A[i] = ar[l+i];
+        }
+        for(int i = 0; i < nB; i++){
+            B[i] = ar[m + i + 1];
+        }
+        int i = 0, j = 0, k = l;
+        while(i < nA && j < nB){
+            if(A[i] < B[j]){
+                ar[k] = A[i];
+                i++;
+            }else{
+                ar[k] = B[j];
+                j++;
+            }
+            k++;
+        }
+        while(i < nA){
+            ar[k] = A[i];
+            i++;
+            k++;
+        }
+        while(j < nB){
+            ar[k] = B[j];
+            j++;
+            k++;
+        }
+    }
+    
+    
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		try{
+		    Scanner sc = new Scanner(System.in);
+		    int t = sc.nextInt();
+		    for(int i = 0; i<t; i++){
+		        int n = sc.nextInt();
+		        long[] ar1 = new long[n];
+		        long[] ar2 = new long[n];
+		        for(int j = 0; j < n; j++){
+		            ar1[j] = sc.nextLong();
+		        }
+		        for(int j = 0; j < n; j++){
+		            ar2[j] = sc.nextLong();
+		        }
+		        
+		        sort(ar1, 0, n-1);
+		        sort(ar2, 0, n-1);
+		        long sum = 0;
+		        for(int j = 0; j < n; j++){
+		            if(ar1[j] >= ar2[j]){
+		                sum += ar2[j];
+		            }else{
+		                sum += ar1[j];
+		            }
+		        }
+		        System.out.println(sum);
+		    }
+		}catch(Exception e){
+		    
+		}
+	}
+}
