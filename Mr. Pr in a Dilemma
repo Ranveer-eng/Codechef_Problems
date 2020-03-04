@@ -163,7 +163,9 @@ class Codechef
 		    }else{
 		        if(c != d){
 		            printNo();
-		        }
+		        }else{
+			    printYes();
+			}
 		    }
 		}
 		}catch(Exception e){
