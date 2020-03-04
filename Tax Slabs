@@ -1,0 +1,133 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+public class Main
+{   
+    
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		//int[] amount = {0, 12500, 25000, 37500, 50000, 62500, 75000};
+		try{
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		int sum = 0;
+		for(int i = 0; i < t; i++){
+		    int cash = sc.nextInt();
+		    if(cash <= 250000){
+		        sum += 0;
+		        System.out.println(cash);
+		    }
+		    else if(cash > 250000){
+		        sum += 0;
+		        if(cash > 250000 && cash <= 500000){
+		            sum += (cash - 250000)*.05;
+		            System.out.println(cash - sum);
+		            //break;
+		        }else{
+		            sum += 12500;
+		            if(cash <= 750000){
+		                sum += (cash - 500000)*0.1;
+		                System.out.println(cash - sum);
+		            }else{
+		                sum += 25000;
+		                if(cash <= 1000000){
+		                    sum += (cash - 750000)*0.15;
+		                    System.out.println(cash - sum);
+		                }else{
+		                    sum += 37500;
+		                    if(cash <= 1250000){
+		                        sum += (cash - 1000000)*0.20;
+		                        System.out.println(cash - sum);
+		                    }else{
+		                        sum += 50000;
+		                        if(cash <= 1500000){
+		                            sum += (cash - 1250000)*0.25;
+		                            System.out.println(cash - sum);
+		                        }else{
+		                            sum += (cash - 1500000)*0.30;
+		                            System.out.println(cash - sum);
+		                        }
+		                    }
+		                }
+		            }
+		        }
+		    }
+		}
+		}
+		catch(Exception e){
+		    
+		}
+	}
+}
+
+
+//Above code showing me wrong answer
+
+//2nd Attempt
+
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+public class Main
+{   
+    
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		//int[] amount = {0, 12500, 25000, 37500, 50000, 62500, 75000};
+		try{
+		    Scanner sc = new Scanner(System.in);
+		    int t = sc.nextInt();
+		    int sum = 0;
+		    for(int i = 0; i < t; i++){
+    		    int cash = sc.nextInt();
+		        if(cash <= 250000){
+		            System.out.println(cash);
+		            continue;
+		        }
+		        if(cash > 250000 && cash <= 500000){
+		            System.out.println(cash - (cash - 250000)/20);
+		            continue;
+		        }
+		        if(cash > 500000 && cash <= 750000){
+		            sum = 0 + 12500 + (int)(cash - 500000)/10;
+		            System.out.println(cash - sum);
+		            continue;
+		        }
+		        if(cash > 750000 && cash <= 1000000){
+		            sum = 0 + 12500 + 25000 + (int)(cash - 750000)*3/20;
+		            System.out.println(cash - sum);
+		            continue;
+		        }
+		        if(cash > 1000000 && cash <= 1250000){
+		            sum = 0 + 12500 + 25000 + 37500 + (int)(cash - 1000000)/5;
+		            System.out.println(cash - sum);
+		            continue;
+		        }
+		        if(cash > 1250000 && cash <= 1500000){
+		            sum = 0 + 12500 + 25000 + 37500 + 50000 + (int)(cash - 1250000)/4;
+		            System.out.println(cash - sum);
+		            continue;
+		        }
+		        if(cash > 1500000){
+		            sum = 0 + 12500 + 25000 + 37500 + 50000 + 62500 + (int)(cash - 1500000)*3/10;
+		            System.out.println(cash - sum);
+		            continue;
+		        }
+    		}
+		}catch(Exception e){
+		    
+		}
+	}
+}
+
+
