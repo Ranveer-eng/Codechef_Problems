@@ -1,0 +1,60 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class codechef
+{   
+    public static void flipCoins(String[] ar, int n){
+        for(int i = 0; i < n; i++){
+            if(ar[i].equals("T")){
+                ar[i] = "H";
+            }else{
+                ar[i] = "T";
+            }
+        }
+    }
+    
+    public static int countNumOfHeads(String[] ar, int n){
+        if(n < 0){
+            return 0;
+        }
+        int cnt = 0;
+        for(int i = 0; i <= n; i++){
+            if(ar[i].equals("H")){
+                cnt += 1;
+            }
+        }
+        return cnt;
+    }
+    
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		try{
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		for(int i = 0; i < t; i++){
+		    int n = sc.nextInt();
+		    int k = sc.nextInt();
+		    sc.nextLine();
+		    String[] ar = sc.nextLine().split(" ");
+		    int j = 1;
+		    while(k > 0){
+		        if(ar[n-j].equals("T")){
+		            j++;
+		        }else{
+		            flipCoins(ar, n-j);
+		            j++;
+		        }
+		        k--;
+		    }
+		    System.out.println(countNumOfHeads(ar, n - j));
+		}
+		}catch(Exception e){
+		    
+		}
+	}
+}
