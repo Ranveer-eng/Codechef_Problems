@@ -1,0 +1,126 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class codechef
+{   
+    public static int partition(int[] ar, int l, int r){
+        int pivot = ar[r];
+        int i = l-1;
+        for(int j = l; j < r; j++){
+            if(ar[j] <= pivot){
+                i++;
+                int t = ar[i];
+                ar[i] = ar[j];
+                ar[j] = t;
+            }
+        }
+        int temp = ar[i+1];
+        ar[i+1] = ar[r];
+        ar[r] = temp;
+        return i+1;
+    }
+    
+    public static void sort(int[] ar, int l, int r){
+        if(l < r){
+            int p = partition(ar, l, r);
+            sort(ar, l, p-1);
+            sort(ar, p+1, r);
+        }
+    }
+    
+    static void NcR(int n, int r) { 
+  
+        // p holds the value of n*(n-1)*(n-2)...,  
+        // k holds the value of r*(r-1)...  
+        long p = 1, k = 1; 
+  
+        // C(n, r) == C(n, n-r),  
+        // choosing the smaller value  
+        if (n - r < r) { 
+            r = n - r; 
+        } 
+  
+        if (r != 0) { 
+            while (r > 0) { 
+                p *= n; 
+                k *= r; 
+  
+                // gcd of p, k  
+                long m = __gcd(p, k); 
+  
+                // dividing by gcd, to simplify product  
+                // division by their gcd saves from the overflow  
+                p /= m; 
+                k /= m; 
+  
+                n--; 
+                r--; 
+            } 
+  
+            // k should be simplified to 1  
+            // as C(n, r) is a natural number  
+            // (denominator should be 1 ) .  
+        } else { 
+            p = 1; 
+        } 
+  
+        // if our approach is correct p = ans and k =1  
+        System.out.println(p); 
+    } 
+  
+    static long __gcd(long n1, long n2) { 
+        long gcd = 1; 
+  
+        for (int i = 1; i <= n1 && i <= n2; ++i) { 
+            // Checks if i is factor of both integers 
+            if (n1 % i == 0 && n2 % i == 0) { 
+                gcd = i; 
+            } 
+        } 
+        return gcd; 
+    } 
+    
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		// your code goes here
+		try{
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		for(int i = 0; i < t; i++){
+		    int n = sc.nextInt();
+		    int k = sc.nextInt();
+		    int[] ar = new int[n];
+		    for(int j = 0; j < n; j++){
+		        ar[j] = sc.nextInt();
+		    }
+		    sort(ar, 0, n-1);
+		    int jC = 0,minSum = 0, count = 0;
+		    for(int j =0; j < k; j++){
+		        if(j < k){
+		            minSum += ar[j];
+		            jC = j;
+		        }
+		    }
+		    for(int j = 0; j < n; j++){
+		        if(ar[j] == ar[k-1]){
+		            count += 1;
+		        }
+		    }
+		    int val = 0;
+		    for(int j = 0; j < k; j++){
+		        if(ar[j] == ar[k-1]){
+		            val += 1;
+		        }
+		    }
+		    NcR(count, val);
+		}
+		}catch(Exception e){
+		    
+		}
+		
+	}
+}
